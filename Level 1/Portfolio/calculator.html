@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <style>
+        /* Basic styling for the calculator */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f4f4f4;
+        }
+        .calculator-screen {
+            grid-column: span 4;
+            text-align: right;
+            font-size: 24px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calculator-button {
+            font-size: 18px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .calculator-button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic Calculator</h1>
+    <div class="calculator">
+        <div class="calculator-screen" id="result">0</div>
+        <button class="calculator-button" onclick="clearScreen()">C</button>
+        <button class="calculator-button" onclick="appendToScreen('7')">7</button>
+        <button class="calculator-button" onclick="appendToScreen('8')">8</button>
+        <button class="calculator-button" onclick="appendToScreen('9')">9</button>
+        <button class="calculator-button" onclick="appendToScreen('/')">/</button>
+        <button class="calculator-button" onclick="appendToScreen('4')">4</button>
+        <button class="calculator-button" onclick="appendToScreen('5')">5</button>
+        <button class="calculator-button" onclick="appendToScreen('6')">6</button>
+        <button class="calculator-button" onclick="appendToScreen('*')">*</button>
+        <button class="calculator-button" onclick="appendToScreen('1')">1</button>
+        <button class="calculator-button" onclick="appendToScreen('2')">2</button>
+        <button class="calculator-button" onclick="appendToScreen('3')">3</button>
+        <button class="calculator-button" onclick="appendToScreen('-')">-</button>
+        <button class="calculator-button" onclick="appendToScreen('0')">0</button>
+        <button class="calculator-button" onclick="calculate()">=</button>
+        <button class="calculator-button" onclick="appendToScreen('+')">+</button>
+    </div>
+
+    <script>
+        // Function to append a value to the calculator screen
+        function appendToScreen(value) {
+            document.getElementById("result").innerText += value;
+        }
+
+        // Function to clear the calculator screen
+        function clearScreen() {
+            document.getElementById("result").innerText = '';
+        }
+
+        // Function to perform calculations
+        function calculate() {
+            const expression = document.getElementById("result").innerText;
+            try {
+                const result = eval(expression);
+                document.getElementById("result").innerText = result;
+            } catch (error) {
+                document.getElementById("result").innerText = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
